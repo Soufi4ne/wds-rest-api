@@ -6,6 +6,7 @@ module.exports = router;
 // Get all classes
 router.get('/', (req, res) => {
     // Code to handle GET request for all classes
+    res.send('All classes')
 });
 
 // Get a specific class by ID
@@ -21,6 +22,11 @@ router.post('/', (req, res) => {
 // Update a class
 router.put('/:id', (req, res) => {
     // Code to handle PUT request for updating a class
+});
+
+// Update a class with patch
+router.patch('/:id', (req, res) => {
+    // Code to make partial updates request for updating a class
 });
 
 // Delete a class
