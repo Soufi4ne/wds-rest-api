@@ -18,6 +18,16 @@ db.once("open", () => {
 
 app.use(express.json());
 
+const classesRouter = require('./routes/classes');
+const studentsRouter = require('./routes/students');
+const subjectsRouter = require('./routes/subjects');
+const gradesRouter = require('./routes/grades');
+
+app.use("classesRouter", classesRouter); 
+app.use("/students", studentsRouter);
+app.use("/subjects", subjectsRouter);
+app.use("/grades", gradesRouter);
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
