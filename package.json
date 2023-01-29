@@ -2,10 +2,10 @@
   "name": "wds-rest-api",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000w\u0000d\u0000s\u0000-\u0000r\u0000e\u0000s\u0000t\u0000-\u0000a\u0000p\u0000i\u0000\r\u0000 \u0000",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon main"
   },
   "repository": {
     "type": "git",
