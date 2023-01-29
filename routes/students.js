@@ -25,8 +25,22 @@ router.get('/', async (req, res) => {
 });
 
 // Add a new student
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     // Code to handle POST request for adding a new student
+    const student = new Student({
+        name: req.body.name,
+        age: req.body.age,
+        gender: req.body.gender,
+        class: req.body.class,
+        subjects: req.body.subjects,
+        grades: req.body.grades,
+    });
+    try {
+        const newStudent = await student.save()
+        res.status(201).json(newStudent)
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 // Update a student

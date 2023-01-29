@@ -12,7 +12,20 @@ const studentSchema = new mongoose.Schema({
   gender: {
     type: String,
     required: true
+  },
+  class: {
+    type: String,
+    required: false
+  },
+  subjects: {
+    type: Array,
+    required: false
+  },
+  grades: {
+    type: Array,
+    required: false
   }
+  
 });
 
 const Student = mongoose.model('Student', studentSchema);
