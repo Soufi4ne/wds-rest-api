@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Soufi4ne/wds-rest-api#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "mongodb": "^4.13.0",
     "mongoose": "^6.9.0"
   },
   "devDependencies": {

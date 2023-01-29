@@ -23,11 +23,20 @@ const studentsRouter = require('./routes/students');
 const subjectsRouter = require('./routes/subjects');
 const gradesRouter = require('./routes/grades');
 
-app.use("classesRouter", classesRouter); 
+app.use((req, res, next) => {
+    console.log(req.method, req.url);
+    next();
+});
+app.use((req, res, next) => {
+    console.log(res.statusCode, res.statusMessage);
+    next();
+});
+
+app.use("classes", classesRouter); 
 app.use("/students", studentsRouter);
 app.use("/subjects", subjectsRouter);
 app.use("/grades", gradesRouter);
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
