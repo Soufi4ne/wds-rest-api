@@ -33,4 +33,3 @@ router.delete('/:id', (req, res) => {
     // Code to handle DELETE request for deleting a subject
 });
 
-module.exports = router;
