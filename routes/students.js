@@ -1,25 +1,27 @@
 const express = require('express');
 const router = express.Router();
+const Student = require('../models/student');
 
 module.exports = router;
 
-const Student = require('../models/student');
 
 // Get all students
-router.get('/', (req, res) => {
-    Student.find()
-        .then(students => {
-            res.send(students + "all students");
-        })
-        .catch(error => {
-            res.status(500).send(error);
-        });
-});
+router.get('/', async (req, res) => {
+    try {
+        const students = await Student.find();
+        res.json(students);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 
 
-// Get a specific student by ID
-router.get('/:id', (req, res) => {
-    // Code to handle GET request for a specific student
+    // Student.find()
+    //     .then(students => {
+    //         res.send(students + "all students");
+    //     })
+    //     .catch(error => {
+    //         res.status(500).send(error);
+    //     });
 });
 
 // Add a new student
