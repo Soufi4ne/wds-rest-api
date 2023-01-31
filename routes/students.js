@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         name: req.body.name,
         age: req.body.age,
         gender: req.body.gender,
-        class: req.body.class,
+        classe: req.body.classe,
         subjects: req.body.subjects,
         grades: req.body.grades,
     });
