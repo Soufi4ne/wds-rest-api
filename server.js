@@ -3,7 +3,7 @@ require("dotenv").config();
 //create a express server
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3001;
 const mongoose = require('mongoose');
 
 //set the "strictQuery" option to "false" and prevent the warning from being displayed.
