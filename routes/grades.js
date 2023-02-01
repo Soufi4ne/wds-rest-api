@@ -5,8 +5,14 @@ module.exports = router;
 
 
 // Get all grades
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     // Code to handle GET request for all grades
+    try {
+        const grades = await Grade.find();
+        res.json(grades);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // Get a specific grade by ID
