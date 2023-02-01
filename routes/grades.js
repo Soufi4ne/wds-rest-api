@@ -43,9 +43,15 @@ router.post('/', async (req, res) => {
 });
 
 
-// Update a grade
-router.put('/:id', (req, res) => {
-    // Code to handle PUT request for updating a grade
+// Update a grade with async await
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedGrade = await Grade.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        res.json(updatedGrade);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+    
 });
 
 // Update a grade with patch
