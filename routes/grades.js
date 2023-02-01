@@ -16,8 +16,14 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific grade by ID
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     // Code to handle GET request for a specific grade
+    try {
+        const grade = await Grade.findById(req.params.id);
+        res.json(grade);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
 // Add a new grade
@@ -39,4 +45,3 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     // Code to handle DELETE request for deleting a grade
 });
-
