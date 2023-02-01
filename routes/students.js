@@ -24,6 +24,16 @@ router.get('/', async (req, res) => {
     //     });
 });
 
+// Get a specific student by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id);
+        res.json(student);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Add a new student
 router.post('/', async (req, res) => {
     // Code to handle POST request for adding a new student
