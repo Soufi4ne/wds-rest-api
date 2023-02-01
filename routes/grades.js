@@ -27,9 +27,21 @@ router.get('/:id', async (req, res) => {
 });
 
 // Add a new grade
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     // Code to handle POST request for adding a new grade
+    const grade = new Grade({
+        student_id: req.body.student_id,
+        subject_id: req.body.subject_id,
+        score: req.body.score,
 });
+    try {
+        const newGrade = await grade.save()
+        res.status(201).json(newGrade)
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 
 // Update a grade
 router.put('/:id', (req, res) => {
