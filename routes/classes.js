@@ -15,8 +15,16 @@ router.get('/', async (req, res) => {
 });
 
 // Get a specific class by ID
-router.get('/:id', getClasse, (req, res) => {
-  res.json(res.classe);
+router.get('/:id', async (req, res) => {
+  try {
+    const classe = await Classe.findById(req.params.id);
+    if (!classe) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+    res.json(classe);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // Add a new class
@@ -35,18 +43,22 @@ router.post('/', async (req, res) => {
 });
 
 // Update a class
-router.put('/:id', getClasse, async (req, res) => {
-  if (req.body.name != null) {
-    res.classe.name = req.body.name;
-  }
-  if (req.body.teacher != null) {
-    res.classe.teacher = req.body.teacher;
-  }
-  if (req.body.students != null) {
-    res.classe.students = req.body.students;
-  }
+router.put('/:id', async (req, res) => {
   try {
-    const updatedClasse = await res.classe.save();
+    const classe = await Classe.findById(req.params.id);
+    if (!classe) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+    if (req.body.name != null) {
+      classe.name = req.body.name;
+    }
+    if (req.body.teacher != null) {
+      classe.teacher = req.body.teacher;
+    }
+    if (req.body.students != null) {
+      classe.students = req.body.students;
+    }
+    const updatedClasse = await classe.save();
     res.json(updatedClasse);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -54,30 +66,24 @@ router.put('/:id', getClasse, async (req, res) => {
 });
 
 // Update a class with patch
-router.patch('/:id', getClasse, async (req, res) => {
-  if (req.body.name != null) {
-    res.classe.name = req.body.name;
-  }
-  if (req.body.teacher != null) {
-    res.classe.teacher = req.body.teacher;
-  }
-  if (req.body.students != null) {
-    res.classe.students = req.body.students;
-  }
+router.patch('/:id', async (req, res) => {
   try {
-    const updatedClasse = await res.classe.save();
-    res.json(updatedClasse);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
-
-// Delete a class
-router.delete('/:id', getClasse, async (req, res) => {
-  try {
-    await res.classe.remove();
-    res.json({ message: 'Deleted This Class' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const classe = await Classe.findById(req.params.id);
+    if (!classe) {
+      return res.status(404).json({ message: 'Class not found' });
+    }
+    if (req.body.name != null) {
+      classe.name = req.body.name;
+    }
+    if (req.body.teacher != null) {
+      classe.teacher = req.body.teacher;
+    }
+    if (req.body.students != null) {
+      classe.students = req.body.students;
+    }
+    const updatedClasse = await classe.save();
+    return res.json(updatedClasse);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 });
