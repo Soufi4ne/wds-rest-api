@@ -13,15 +13,6 @@ router.get('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-
-
-    // Student.find()
-    //     .then(students => {
-    //         res.send(students + "all students");
-    //     })
-    //     .catch(error => {
-    //         res.status(500).send(error);
-    //     });
 });
 
 // Get a specific student by ID
@@ -61,11 +52,6 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-});
-
-// Update a student with patch
-router.patch('/:id', (req, res) => {
-    // Code to make partial updates request for updating a student
 });
 
 // Delete a student
