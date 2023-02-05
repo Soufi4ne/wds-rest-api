@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
         student_id: req.body.student_id,
         subject_id: req.body.subject_id,
         score: req.body.score,
-});
+    });
     try {
         const newGrade = await grade.save()
         res.status(201).json(newGrade)
@@ -51,15 +51,25 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
-    
+
 });
 
 // Update a grade with patch
-router.patch('/:id', (req, res) => {
-    // Code to make partial updates request for updating a grade
+router.patch('/:id', async (req, res) => {
+    try {
+        const updatedGrade = await Grade.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
+        res.json(updatedGrade);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
 // Delete a grade
-router.delete('/:id', (req, res) => {
-    // Code to handle DELETE request for deleting a grade
+router.delete('/:id', async (req, res) => {
+    try {
+        const deletedGrade = await Grade.findByIdAndRemove(req.params.id);
+        res.json(deletedGrade);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
