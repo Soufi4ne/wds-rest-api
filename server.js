@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("classes", classesRouter); 
+app.use("/classes", classesRouter); 
 app.use("/students", studentsRouter);
 app.use("/subjects", subjectsRouter);
 app.use("/grades", gradesRouter);
