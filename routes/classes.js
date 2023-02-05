@@ -49,11 +49,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Update a class with patch
-router.patch('/:id', (req, res) => {
-    // Code to make partial updates request for updating a class
-});
-
 // Delete a class
 router.delete('/:id', async (req, res) => {
     try {
